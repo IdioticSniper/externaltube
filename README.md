@@ -11,6 +11,7 @@ A way to scrape metadata and browse YouTube videos that works off web.archive.or
 # Setup
 1. Import database
 2. Modify /incl/main/config.php to fit your database credentials and ffmpeg paths
+3. Create the folders "/content/video/" and "/content/thumbs/" in the same directory as the PHP files
 
 # How to scrape
 Send a GET request to any of the files in /parsers/ with these parameters: 
@@ -23,5 +24,9 @@ What the public instance of the website does is work off of manually created URL
 # To-do list
 * Related videos
 * Better search
-* Automate CDN scraping
-* Better DOM parsing (currently, it only supports late-2006 to early-2007 YouTube watch pages, and it has it's flaws)
+* Automate making URL lists out of YouTube CDN's
+* Better DOM parsing
+
+# Notes
+- The only included DOM parser currently only supports late 2006-late 2007 YouTube watch pages.
+- Search is tag and uploader-name only.
