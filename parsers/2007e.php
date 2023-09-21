@@ -49,7 +49,12 @@ if(isset($_GET["scrape"])) {
 		echo "\nID: " . $_GET["scrape"] . " - Video metadata scraped\n";
 	}
 
-	$url = "http://web.archive.org/web/1im_/http://" . $_GET["cdn"] . ".youtube.com/get_video?video_id=" . $_GET["scrape"];
+	if(!isset($_GET["cdn"])) {
+		$url = "http://web.archive.org/web/1im_/http://wayback-fakeurl.archive.org/yt/img/" . $_GET["scrape"];
+	} else {
+		$url = "http://web.archive.org/web/1im_/http://" . $_GET["cdn"] . ".youtube.com/get_video?video_id=" . $_GET["scrape"];
+	}
+	
 	$file_name = $_SERVER["DOCUMENT_ROOT"] . "/content/video/" . $_GET["scrape"] . ".flv";
 	if (file_put_contents($file_name, file_get_contents($url))) {
 		echo "ID: " . $_GET["scrape"] . " - FLV downloaded\n";
