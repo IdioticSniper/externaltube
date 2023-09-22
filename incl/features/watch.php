@@ -67,8 +67,13 @@ if($video->length == 0) {
 					?>
 		
 					<div class="watchAdded">
-					Added: <?php echo $Now->format('F') . " " . $Now->format('d') . ", " . $Now->format('Y'); ?> by <a href="profile.php?user=<?php echo $video->uploaded_by; ?>"><?php echo $video->uploaded_by; ?></a> //
-					<a href="profile_videos.php?user=<?php echo $video->uploaded_by; ?>">Videos</a>
+					Added: <?php echo $Now->format('F') . " " . $Now->format('d') . ", " . $Now->format('Y'); ?> by <?php echo $video->uploaded_by; ?> // 
+					<?php
+					$stmt = $conn->prepare("SELECT id FROM videos WHERE uploaded_by=:t0");
+					$stmt->bindParam(":t0", $video->uploaded_by);
+					$stmt->execute();
+					?>
+					<a href="profile_videos.php?user=<?php echo $video->uploaded_by; ?>">Videos</a> (<?php echo $stmt->rowCount(); ?>)
 					</div>
 				</td>
 			</tr>
