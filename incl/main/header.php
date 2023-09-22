@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>ExternalTube - Your Digital Video Vault</title>
+	<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
 	<script type="text/javascript" src="flashobject.js"></script>
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -54,7 +55,7 @@
 			<tr>
 				<form method="GET" action="results.php">
 				<td>
-					<input type="text" value="" name="search" size="30" maxlength="128" style="color:#ff3333; font-size: 14px; padding: 2px;">
+					<input type="text" value="<?php if(isset($_GET["search"])) echo str_replace("+", " ", $_GET['search']); ?>" name="search" size="30" maxlength="128" style="color:#ff3333; font-size: 14px; padding: 2px;">
 				</td>
 				<td>
 					<input type="submit" value="Search Videos">
