@@ -20,7 +20,7 @@ foreach($stmt->fetchAll(PDO::FETCH_OBJ) as $video) {
 	<tr valign=\"top\">
 		<td><a href=\"index.php?v=" . $video->id . "\" class=\"bold\" target=\"_parent\"><img src=\"get_still.php?video_id=" . $video->id . "\" class=\"moduleEntryThumb\" width=\"80\" height=\"60\"></a></td>
 		<td width=\"100%\"><div class=\"moduleFrameTitle\"><a href=\"index.php?v=" . $video->id . "\" target=\"_parent\">" . $video->title . "</a></div>
-		<div class=\"moduleFrameDetails\">Added: " . $Now->format('F') . " " . $Now->format('d') . ", " . $Now->format('Y') . "<br>by <a href=\"/profile.php?user=" . $video->uploaded_by . "\" target=\"_parent\">" . $video->uploaded_by . "</a></div>
+		<div class=\"moduleFrameDetails\">Added: " . $Now->format('F') . " " . $Now->format('d') . ", " . $Now->format('Y') . "<br>by <a href=\"/profile_videos.php?user=" . $video->uploaded_by . "\" target=\"_parent\">" . $video->uploaded_by . "</a></div>
 		</td>
 	</tr>
 </table>

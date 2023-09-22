@@ -20,6 +20,9 @@ if($video->length == 0) {
 	header("Location: /index.php?v=" . $_GET["v"]);
 }
 
+// permalinks
+$video_url = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$embed = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]/embed.php?v=" . $_GET["v"];
 ?>
 <table width="795" align="center" cellpadding="0" cellspacing="0" border="0">
 	<tr valign="top">
@@ -78,6 +81,42 @@ if($video->length == 0) {
 				</td>
 			</tr>
 		</table>
+
+		<!-- watchTable -->
+		
+		<div style="padding: 15px 0px 10px 0px;">
+		<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#E5ECF9">
+			<tr>
+				<td><img src="img/box_login_tl.gif" width="5" height="5"></td>
+				<td width="100%"><img src="img/pixel.gif" width="1" height="5"></td>
+				<td><img src="img/box_login_tr.gif" width="5" height="5"></td>
+			</tr>
+			<tr>
+				<form name="linkForm" id="linkForm">
+				<td><img src="img/pixel.gif" width="5" height="1"></td>
+				<td align="center">
+		
+				<div style="font-size: 11px; font-weight: bold; color: #CC6600; padding: 5px 0px 5px 0px;">Share this video! Copy and paste this link:</div>
+				<div style="font-size: 11px; padding-bottom: 15px;">
+				<input name="video_link" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.video_link.select();" value="<?php echo $video_url; ?>" size="50" readonly="true" style="font-size: 10px; text-align: center;">
+				</div>
+				
+				<div style="font-size: 11px; font-weight: bold; color: #CC6600; padding: 5px 0px 5px 0px;">Video Player: Put a Video Player on your website</div>
+				<div style="font-size: 11px; padding-bottom: 15px;">
+				<input name="player" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.player.select();" value="<?php echo $embed; ?>" size="50" readonly="true" style="font-size: 10px; text-align: center;">
+				</div>
+				
+				</td>
+				<td><img src="img/pixel.gif" width="5" height="1"></td>
+				</form>
+			</tr>
+			<tr>
+				<td><img src="img/box_login_bl.gif" width="5" height="5"></td>
+				<td><img src="img/pixel.gif" width="1" height="5"></td>
+				<td><img src="img/box_login_br.gif" width="5" height="5"></td>
+			</tr>
+		</table>
+		</div>
 		
 		<!-- watchTable -->
 		<br>
