@@ -1,10 +1,10 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/incl/main/header.php");
-
 if(mb_strlen($_GET["search"], 'utf8') < 3) { die("search query must be three chars minimum"); }
-$search = str_replace(" ", "|", $_GET['search']);
-$stmt = $conn->prepare("SELECT * FROM videos WHERE videos.tags REGEXP :t0 OR uploaded_by='$search' ORDER BY videos.uploaded_on DESC"); // Regex!
-$stmt->bindParam(":t0", $search);
+$search = str_replace(" ", "+", $_GET['search']);
+
+$stmt = $conn->prepare("SELECT * FROM videos WHERE title REGEXP :t0 OR uploaded_by=:t0 ORDER BY videos.uploaded_on DESC"); // Regex!
+$stmt->bindParam(":t0", $_GET["search"]);
 $stmt->execute();
 
 ?>
@@ -39,9 +39,9 @@ $stmt->execute();
 							<td>
 							<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">
 								<tr>
-									<td><a href=\"index.php?v=" . $video->id . "&search=" . $_GET["search"] . "\"><img src=\"get_still.php?video_id=" . $video->id . "&still_id=1\" class=\"moduleEntryThumb\" width=\"100\" height=\"75\"></a></td>
-									<td><a href=\"index.php?v=" . $video->id . "&search=" . $_GET["search"] . "\"><img src=\"get_still.php?video_id=" . $video->id . "&still_id=2\" class=\"moduleEntryThumb\" width=\"100\" height=\"75\"></a></td>
-									<td><a href=\"index.php?v=" . $video->id . "&search=" . $_GET["search"] . "\"><img src=\"get_still.php?video_id=" . $video->id . "&still_id=3\" class=\"moduleEntryThumb\" width=\"100\" height=\"75\"></a></td>
+									<td><a href=\"index.php?v=" . $video->id . "&search=" . $search . "\"><img src=\"get_still.php?video_id=" . $video->id . "&still_id=1\" class=\"moduleEntryThumb\" width=\"100\" height=\"75\"></a></td>
+									<td><a href=\"index.php?v=" . $video->id . "&search=" . $search . "\"><img src=\"get_still.php?video_id=" . $video->id . "&still_id=2\" class=\"moduleEntryThumb\" width=\"100\" height=\"75\"></a></td>
+									<td><a href=\"index.php?v=" . $video->id . "&search=" . $search . "\"><img src=\"get_still.php?video_id=" . $video->id . "&still_id=3\" class=\"moduleEntryThumb\" width=\"100\" height=\"75\"></a></td>
 								</tr>
 							</table>
 							
