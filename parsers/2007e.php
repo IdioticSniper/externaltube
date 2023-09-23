@@ -69,9 +69,15 @@ if(isset($_GET["scrape"])) {
 	$thumb1 = round($framecount2 / 3);
 	$thumb2 = round($framecount2 / 2);
 	$thumb3 = round($framecount2 / 1.2);
-	exec("$ffmpeg -i $input -vf \"select=gte(n\,$thumb1)\" -vframes 1 -s 120x90 " . $_SERVER["DOCUMENT_ROOT"] . "/content/thumb/" . $_GET["scrape"] . ".1.jpg");
-	exec("$ffmpeg -i $input -vf \"select=gte(n\,$thumb2)\" -vframes 1 -s 120x90 " . $_SERVER["DOCUMENT_ROOT"] . "/content/thumb/" . $_GET["scrape"] . ".2.jpg");
-	exec("$ffmpeg -i $input -vf \"select=gte(n\,$thumb3)\" -vframes 1 -s 120x90 " . $_SERVER["DOCUMENT_ROOT"] . "/content/thumb/" . $_GET["scrape"] . ".3.jpg");	
+	exec("$ffmpeg -i $input -vf \"select=gte(n\,$thumb1)\" -vframes 1 -s 120x90 ../content/thumb/" . $_GET["scrape"] . ".1.jpg");
+	exec("$ffmpeg -i $input -vf \"select=gte(n\,$thumb2)\" -vframes 1 -s 120x90 ../content/thumb/" . $_GET["scrape"] . ".2.jpg");
+	exec("$ffmpeg -i $input -vf \"select=gte(n\,$thumb3)\" -vframes 1 -s 120x90 ../content/thumb/" . $_GET["scrape"] . ".3.jpg");
+	
+	$length = round((int)exec("$ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 ../content/video/" . $_GET["scrape"] . ".flv"));
+	$stmt = $conn->prepare("UPDATE videos SET length=:t0 WHERE id=:t1");
+	$stmt->bindParam(':t0', $length);
+	$stmt->bindParam(':t1', $_GET["scrape"]);
+	$stmt->execute();
 }
 
 ?>
