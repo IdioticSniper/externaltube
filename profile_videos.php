@@ -56,8 +56,8 @@ if($stmt->rowCount() == 0) {
 				echo "				<div class=\"moduleEntry\"> 
 					<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">
 						<tr valign=\"top\">
-							<td><a href=\"watch.php?v=" . $video->id . "\"><img src=\"get_still.php?video_id=" . $video->id . "\" class=\"moduleEntryThumb\" width=\"120\" height=\"90\"></a></td>
-							<td width=\"100%\"><div class=\"moduleEntryTitle\"><a href=\"watch.php?v=" . $video->id . "\">" . $video->title . "</a></div>
+							<td><a href=\"index.php?v=" . $video->id . "\"><img src=\"get_still.php?video_id=" . $video->id . "\" class=\"moduleEntryThumb\" width=\"120\" height=\"90\"></a></td>
+							<td width=\"100%\"><div class=\"moduleEntryTitle\"><a href=\"index.php?v=" . $video->id . "\">" . $video->title . "</a></div>
 							<div class=\"moduleEntryDescription\">" . nl2br($video->description) . "</div>
 							<div class=\"moduleEntryTags\">Tags // ";
 							foreach(explode(" ", $video->tags) as $tag) echo '<a href="results.php?search='.htmlspecialchars($tag).'">'.htmlspecialchars($tag).'</a> : ';
