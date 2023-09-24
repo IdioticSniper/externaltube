@@ -103,7 +103,12 @@ $embed = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]
 				
 				<div style="font-size: 11px; font-weight: bold; color: #CC6600; padding: 5px 0px 5px 0px;">Video Player: Put a Video Player on your website</div>
 				<div style="font-size: 11px; padding-bottom: 15px;">
-				<input name="player" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.player.select();" value="<?php echo $embed; ?>" size="50" readonly="true" style="font-size: 10px; text-align: center;">
+				<input name="player" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.player.select();" value="<iframe width=&quot;460&quot; height=&quot;357&quot; src=&quot;<?php echo $embed; ?>&quot; scrolling=&quot;off&quot; frameborder=&quot;0&quot;></iframe>" size="50" readonly="true" style="font-size: 10px; text-align: center;">
+				</div>
+
+				<div style="font-size: 11px; font-weight: bold; color: #CC6600; padding: 5px 0px 5px 0px;">Video List: Put a List of this user's videos on your website</div>
+				<div style="font-size: 11px; padding-bottom: 15px;">
+				<input name="video_list" type="text" onclick="javascript:document.linkForm.video_link.focus();document.linkForm.video_list.select();" value="<iframe id=&quot;videos_list&quot; name=&quot;videos_list&quot; src=&quot;<?php echo (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]"; ?>/videos_list.php?user=<?php echo $video->uploaded_by; ?>&quot; scrolling=&quot;auto&quot; width=&quot;265&quot; height=&quot;400&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;>" size="50" readonly="true" style="font-size: 10px; text-align: center;">
 				</div>
 				
 				</td>
